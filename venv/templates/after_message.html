@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back to Safe Shore</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #e74c3c, #c0392b); /* Red gradient for a warning effect */
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .warning-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #f39c12;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+        .slider-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .slider-container label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .slider-container input[type="range"] {
+            width: 100%;
+            max-width: 400px;
+        }
+        .slider-value {
+            font-size: 18px
+        }
+        #loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px auto;
+        }
+        .loading-text {
+            font-size: 18px;
+            color: #fff;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        function showGradingScale() {
+            document.getElementById('initial-message').classList.add('hidden');
+            document.getElementById('grading-section').classList.remove('hidden');
+        }
+
+        function showLoadingSpinner() {
+            document.getElementById('loading-spinner').style.display = 'block';
+            setTimeout(function() {
+                window.location.href = "{{ url_for('final_page') }}";
+            }, 2000); // Simulate loading before redirecting to the final page
+        }
+
+        function updateSliderValue(value) {
+            document.getElementById('slider-value').textContent = value;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="initial-message">
+            <div class="warning-icon">⚠️</div>
+            <h1>Back to Safe Shore</h1>
+            <p>You have entered a potentially malicious or suspicious site. It’s important to be cautious online.</p>
+            <button type="button" onclick="showGradingScale()">Proceed to Safety</button>
+        </div>
+
+        <div id="grading-section" class="hidden">
+            <p>How realistic was this phishing attempt? Please rate it on a scale from 1 to 10:</p>
+            <div class="slider-container">
+                <label for="phishing-rating">Realism Rating:</label>
+                <input type="range" id="phishing-rating" name="rating" min="1" max="10" value="5" oninput="updateSliderValue(this.value)">
+                <div class="slider-value">Your rating: <span id="slider-value">5</span></div>
+            </div>
+            <button type="button" onclick="showLoadingSpinner()">Submit and Return to Safe Shore</button>
+        </div>
+    </div>
+
+    <div id="loading-spinner">
+        <div class="spinner"></div>
+        <div class="loading-text">Processing your response...</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Spear Phishing Message</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #283E51, #4B79A1);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            min-height: 100vh;
+            color: #fff;
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            margin-top: 20px; /* Add margin to create space at the top */
+        }
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        #loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px auto; /* Center the spinner */
+        }
+        .loading-text {
+            font-size: 18px;
+            color: #fff;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        function showLoadingSpinner() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Your Message</h1>
+        <p>To create a customized spear phishing message, please fill in your details from LinkedIn. This will allow the system to generate a message tailored specifically to you.</p>
+        <form method="POST" onsubmit="showLoadingSpinner()">
+                     <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="e.g., John Doe">
+
+            <label for="about">About:</label>
+            <textarea id="about" name="about" rows="4" required placeholder="e.g., Passionate about cybersecurity and software development..."></textarea>
+
+            <label for="education">Education:</label>
+            <input type="text" id="education" name="education" placeholder="e.g., B.Sc. in Computer Science, MIT">
+
+            <label for="interests">Interests:</label>
+            <input type="text" id="interests" name="interests" placeholder="e.g., Cybersecurity, AI, Blockchain">
+
+            <label for="post1">Post 1:</label>
+            <textarea id="post1" name="post1" rows="3" required placeholder="e.g., Recently participated in a webinar on AI and cybersecurity..."></textarea>
+
+            <label for="post2">Post 2:</label>
+            <textarea id="post2" name="post2" rows="3" placeholder="e.g., Excited to share my thoughts on the latest trends in AI..."></textarea>
+
+            <label for="post3">Post 3:</label>
+            <textarea id="post3" name="post3" rows="3" placeholder="e.g., Attended a great conference on machine learning and data science..."></textarea>
+
+            <input type="submit" value="Generate Message">
+        </form>
+    </div>
+    <div id="loading-spinner">
+        <div class="spinner"></div>
+        <div class="loading-text">Generating a message just for you!</div>
+    </div>
+
+</body>
+</html>
